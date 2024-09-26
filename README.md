@@ -1,4 +1,4 @@
-#Features
+# Features
 
 Tracks the amount of time you've been on a Visual Studio Code file.
 

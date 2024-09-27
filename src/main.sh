@@ -1,66 +1,47 @@
 #!/bin/bash
 
-start=$SECONDS
+set -e
 
-file_modification () {
-    printf "\nEntering...\n\n"
+file_creation () {
+    printf "\nChecking...\n\n"
+    sleep 1 
+    files=$( stat -c "%n %w" * | sort )
+    printf "File Creation Times:\n\n$files"
+    options_list
+}
+
+file_access() {
+    printf "\nChecking...\n\n"
+    sleep 1 
+    a_files=$( stat -c "%n %x" * | sort )
+    printf "File Access Times:\n\n$a_files"
+    m_files=$( stat -c "%n %y" * | sort)
+    printf "\n\nFile Modification Times:\n\n$m_files"
+    options_list
+}
+
+set_timer() {
+    printf "\nChecking..\n\n"
     sleep 1
-    printf "Which file do you want to check the modification time of? Type 'All' to check the modification time of all files.\n"
-    read m_input
-
-    if [[ "$m_input" = "All" ]]; then
-        printf "Checking...\n\n"
-        sleep 1 
-        files=$(( stat -c %n %w * | sort ))
-        printf "Files:\n\n$files"
-    else 
-        printf "That is not a valid response, please try again."
-        file_modification
-    fi
-}
-
-
-file_read () {
-    printf "Entering...\n\n"
-    sleep 1 
-    printf "Which file do you want to check the read time of? Type * to check the read time of all files.\n"
-    read r_input
-}
-
-set_timer () {
-    printf "Entering...\n\n"
-    sleep 1 
-    printf "Start timer on this folder or on a specifc file?\n\n"
-    printf "(1) Folder\n\n"
-    printf "(2) File\n\n"
+    printf "How long do you want to set a timer for? Answer in seconds.\n" 
     read t_input
+    t_input=$1
+    [[ $1 =~ "^[0-9]+$" ]] && { printf "That is a number"; exit 0;} || { printf "That is not a number, please try again"; set_timer; }
 }
 
-set_alarm () {
-    printf "Entering...\n\n"
-    sleep 1 
-    printf " Set alarm on this folder or on a specific file?\n\n"
-     printf "(1) Folder\n\n"
-    printf "(2) File\n\n"
-    read al_input
-}
-
-printf "\nWelcome to Time Tracker!\n\nOptions List:\n\n"
-
-
+printf "\nWelcome to Time Tracker!\n\nOptions List:\n"
 
 options_list () {
-    printf "(1) Get file modification time:\n\n"
-    printf "(2) Get file read time:\n\n"
+    printf "\n\n(1) Get file creation times:\n\n"
+    printf "(2) Get file access and modification times:\n\n"
     printf "(3) Set Timer:\n\n"
-    printf "(4) Set Alarm:\n\n"
     printf "(5) Exit:\n\n"
     read o_input
     
     if [[ "$o_input" == 1 ]]; then
-        file_modification
+        file_creation
     elif [[ "$o_input" == 2 ]]; then
-        file_read
+        file_access
     elif [[ "$o_input" == 3 ]]; then
         set_timer
     elif [[ "$o_input" == 4 ]]; then
@@ -76,8 +57,4 @@ options_list () {
     return 0
 }
 options_list
-
-printf "\nExit Status: $?\n"
-duration=$(( SECONDS - start ))
-printf "Duration: $duration seconds"
 

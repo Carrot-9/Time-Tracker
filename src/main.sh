@@ -3,14 +3,36 @@
 start=$SECONDS
 
 file_access () {
-    printf "Entering...\n\n"
+    printf "\nEntering...\n\n"
     sleep 1
-    printf "Which file do you want to read? Type * to read all files\n"
+    printf "Which file do you want to check the access time of? Type * to check the access time of all files.\n"
     read input
     
-    
+}
 
+file_read () {
+    printf "Entering...\n\n"
+    sleep 1 
+    printf "Which file do you want to check the read time of? Type * to check the read time of all files.\n"
+    read input
+}
 
+set_timer () {
+    printf "Entering...\n\n"
+    sleep 1 
+    printf "Start timer on this folder or on a specifc file?\n\n"
+    printf "(1) Folder\n\n"
+    printf "(2) File\n\n"
+    read input
+}
+
+set_alarm () {
+    printf "Entering...\n\n"
+    sleep 1 
+    printf " Set alarm on this folder or on a specific file?\n\n"
+     printf "(1) Folder\n\n"
+    printf "(2) File\n\n"
+    read input
 }
 
 printf "\nWelcome to Time Tracker!\n\nOptions List:\n\n"
@@ -41,12 +63,9 @@ else
 fi
 return 0
 }
-
 options_list
 
-# Checks Duration 
-
-echo "\nExit Status: $?"
+printf "\nExit Status: $?"
 duration=$(( SECONDS - start ))
-echo "Duration: $duration seconds"
+printf "Duration: $duration seconds"
 

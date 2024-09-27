@@ -2,6 +2,7 @@
 
 start=$SECONDS
 
+math_question ()  {
 echo "What is 2 + 2 ?:"
 read question
 
@@ -12,6 +13,13 @@ else
 
     echo "Incorrect!"
 fi
+
+return 0
+}
+
+math_question 
+
+echo "Exit Status: $?"
 
 duration=$(( SECONDS - start ))
 echo "Duration: $duration seconds"

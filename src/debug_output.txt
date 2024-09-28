@@ -7,27 +7,11 @@
 + printf '(4) Set Timer:\n\n'
 + printf '(5) Exit:\n\n'
 + read o_input
-+ [[ 4 == 1 ]]
-+ [[ 4 == 2 ]]
-+ [[ 4 == 3 ]]
-+ [[ 4 == 4 ]]
-+ set_timer
-+ printf '\nChecking...\n\n'
++ [[ 5 == 1 ]]
++ [[ 5 == 2 ]]
++ [[ 5 == 3 ]]
++ [[ 5 == 4 ]]
++ [[ 5 == 5 ]]
++ printf '\nExiting Time Tracker...'
 + sleep 1
-+ printf 'Starting Timer...\n\n'
-+ printf 'Press Ctrl + C to stop timer.\n\n'
-+ count=0
-+ :
-+ sleep 1
-+ (( count+=1 ))
-+ :
-+ sleep 1
-+ (( count+=1 ))
-+ :
-+ sleep 1
-+ (( count+=1 ))
-+ :
-+ sleep 1
-++ ctrl_c
-++ printf 'Timer: 3 seconds'
-++ exit 0
++ exit 0

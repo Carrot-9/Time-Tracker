@@ -7,38 +7,27 @@
 + printf '(4) Set Timer:\n\n'
 + printf '(5) Exit:\n\n'
 + read o_input
-+ [[ 3 == 1 ]]
-+ [[ 3 == 2 ]]
-+ [[ 3 == 3 ]]
-+ set_alarm
++ [[ 4 == 1 ]]
++ [[ 4 == 2 ]]
++ [[ 4 == 3 ]]
++ [[ 4 == 4 ]]
++ set_timer
 + printf '\nChecking...\n\n'
 + sleep 1
-+ printf 'How long do you want to set the alarm for? Answer in seconds.\n'
-+ read a_input
-+ [[ 60 =~ ^[0-9]+$ ]]
-+ [[ 60 -gt 0 ]]
++ printf 'Starting Timer...\n\n'
++ printf 'Press Ctrl + C to stop timer.\n\n'
++ count=0
++ :
 + sleep 1
-+ ((  a_input -= 1  ))
-+ [[ 59 -gt 0 ]]
++ (( count+=1 ))
++ :
 + sleep 1
-+ ((  a_input -= 1  ))
-+ [[ 58 -gt 0 ]]
++ (( count+=1 ))
++ :
 + sleep 1
-+ ((  a_input -= 1  ))
-+ [[ 57 -gt 0 ]]
++ (( count+=1 ))
++ :
 + sleep 1
-+ ((  a_input -= 1  ))
-+ [[ 56 -gt 0 ]]
-+ sleep 1
-+ ((  a_input -= 1  ))
-+ [[ 55 -gt 0 ]]
-+ sleep 1
-+ ((  a_input -= 1  ))
-+ [[ 54 -gt 0 ]]
-+ sleep 1
-+ ((  a_input -= 1  ))
-+ [[ 53 -gt 0 ]]
-+ sleep 1
-+ ((  a_input -= 1  ))
-+ [[ 52 -gt 0 ]]
-+ sleep 1
+++ ctrl_c
+++ printf 'Timer: 3 seconds'
+++ exit 0
